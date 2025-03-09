@@ -17,6 +17,10 @@ public:
 
     Book(string t, string a, int y) : title(t), author(a), year(y) {}
 
+    Book(const Book &b) : title(b.title), author(b.author), year(b.year) {
+        cout << "Book copied: " << title << endl;
+    }
+
     ~Book() { cout << "Book destroyed: " << title << endl; }
 
     void display() const {
@@ -34,6 +38,10 @@ public:
     Author(string n) : Author(n, "Unknown") {}
 
     Author(string n, string nat) : name(n), nationality(nat) {}
+
+    Author(const Author &a) : name(a.name), nationality(a.nationality) {
+        cout << "Author copied: " << name << endl;
+    }
 
     ~Author() { cout << "Author destroyed: " << name << endl; }
 
@@ -61,24 +69,29 @@ public:
 };
 
 int main() {
-
     Book book1("1984", "George Orwell", 1949);
     book1.display();
 
-    Book book2("Faust", "Johann Georg Faust");
-    book2.display();
+   // Book book2("Faust", "Johann Georg Faust");
+    //book2.display();
 
-    Book book3("Gamlet");
-    book3.display();
+    //Book book3("Gamlet");
+    //book3.display();
+
+    Book bookCopy = book1;
+    bookCopy.display();
 
     Author author1("George Orwell", "British");
     author1.show();
 
+    Author authorCopy = author1;
+    authorCopy.show();
+
     Library library1("National Library of National University", 10000);
     library1.info();
 
-    Library library2("Rivne Regional Universal Scientific Library");
-    library2.info();
+    //Library library2("Rivne Regional Universal Scientific Library");
+    //library2.info();
 
     return 0;
 }
